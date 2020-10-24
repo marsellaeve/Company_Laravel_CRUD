@@ -7,9 +7,9 @@
                     <div class="col-md-12">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Newest Film</h3>
+                                <h3 class="panel-title">Film Data Management</h3>
                                 <div class="right">
-                                    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-plus-square" data-toggle="modal" data-target="#exampleModal"></i> Add Film </button>
+                                    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-plus-square" data-toggle="modal" data-target="#exampleModal" style="font-size: 17px">Add Film</i></button>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -137,6 +137,10 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Rating</label>
                     <input name="rating" type="float" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Rating">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Poster</label>
+                    <input name="poster" type="file" value="{{$film->poster}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Poster">
                 </div>
         </div>
         <div class="modal-footer">

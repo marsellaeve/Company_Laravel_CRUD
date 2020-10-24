@@ -12,7 +12,7 @@ class FilmController extends Controller
             $data_film = \App\Models\Film::where('title','LIKE','%'.$request->search.'%')->get();
         }
         else if($request->has('filterdate')){
-            $data_film = \App\Models\Film::where('release_date','>',date('Y-m-d').$request->filterdate)->get();
+            $data_film = \App\Models\Film::where('release_date','>',$request->filterdate)->get();
         }
         else if($request->has('filtergenre')){
             $data_film = \App\Models\Film::where('genre','LIKE','%'.$request->filtergenre.'%')->get();
@@ -31,6 +31,11 @@ class FilmController extends Controller
     public function create(Request $request)
     {
         \App\Models\Film::create($request->all());
+        if($request->hasFile('poster')){
+            $request->file('poster')->move('images/',$request->file('poster')->getClientOriginalName());
+            $film->poster=$request->file('poster')->getClientOriginalName();
+            $film->save();
+        }
         return redirect('/film')->with('success','Film Input Success');
     }
     public function edit($id)
