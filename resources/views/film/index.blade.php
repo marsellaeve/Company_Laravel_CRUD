@@ -22,12 +22,12 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Title</th>
-                                            <th>Release Date</th>
-                                            <th>Genre</th>
-                                            <th>Duration</th>
-                                            <th>Rated</th>
-                                            <th>Rating</th>
+                                            <th>@sortablelink('title')</th>
+                                            <th>@sortablelink('release_date')</th>
+                                            <th>@sortablelink('genre')</th>
+                                            <th>@sortablelink('duration')</th>
+                                            <th>@sortablelink('rated')</th>
+                                            <th>@sortablelink('rating')</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -51,35 +51,41 @@
                                         <tr>
                                             <td>
                                                 <form class="navbar-form navbar-left">
-                                                    <div class="input-group">
+                                                    <div class="form-group">
+                                                        <label>Filter by Genre</label><br>
                                                         <input name="filtergenre" type="text" value="" class="form-control" placeholder="Filter for genre..." method="GET" action="/film">
                                                     </div>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="navbar-form navbar-left">
-                                                    <div class="input-group">
+                                                <form class="navbar-form navbar-left" method="GET" action="/film">
+                                                    <div class="form-group">
+                                                        <label>Filter by Release Date Before </label><br>
                                                         <input name="filterdate" type="date" value="" class="form-control"  method="GET" action="/film">
+                                                        <button type="submit" class="btn btn-primary btn">Go</button>
                                                     </div>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="navbar-form navbar-left">
-                                                    <div class="input-group">
-                                                        <select name="filterrated" class="form-control" placeholder="Filter for rated..." method="GET" action="/film">
-                                                            <option @if($film->rated=='G') selected @endif>G</option>
-                                                            <option @if($film->rated=='PG') selected @endif>PG</option>
-                                                            <option @if($film->rated=='PG-13') selected @endif>PG-13</option>
-                                                            <option @if($film->rated=='R') selected @endif>R</option>
-                                                            <option @if($film->rated=='NC-17') selected @endif>NC-17</option>
-                                                            <option @if($film->rated=='Not Rated') selected @endif>Not Rated</option>
+                                                <form class="navbar-form" method="GET" action="/film">
+                                                    <div class="form-group">
+                                                        <label>Filter by Rated</label><br>
+                                                        <select name="filterrated" class="form-control" id="exampleFormControlSelect1">
+                                                            <option>G</option>
+                                                            <option>PG</option>
+                                                            <option>PG-13</option>
+                                                            <option>R</option>
+                                                            <option>NC-17</option>
+                                                            <option>Not Rated</option>
                                                         </select>
+                                                        <button type="submit" class="btn btn-primary btn">Go</button>
                                                     </div>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form class="navbar-form navbar-left">
                                                     <div class="input-group">
+                                                        <label>Filter by Rating Higher Than</label><br>
                                                         <input name="filterrating" type="number" value="" class="form-control" placeholder="Rating higher than ..." method="GET" action="/film">
                                                     </div>
                                                 </form>
@@ -105,7 +111,7 @@
         </button>
         </div>
         <div class="modal-body">
-            <form action="/film/create" method="POST">
+            <form action="/film/create" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
@@ -140,7 +146,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Poster</label>
-                    <input name="poster" type="file" value="{{$film->poster}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Poster">
+                    <input name="poster" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Poster">
                 </div>
         </div>
         <div class="modal-footer">

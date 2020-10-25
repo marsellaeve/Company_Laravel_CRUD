@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('login');
 });
 
 Route::get('/login','App\Http\Controllers\AuthController@login')->name('login');
@@ -23,6 +23,7 @@ Route::get('/logout','App\Http\Controllers\AuthController@logout');
 Route::post('/signup','App\Http\Controllers\AuthController@signup');
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::get('/','App\Http\Controllers\DashboardController@index');
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');
     Route::get('/film', 'App\Http\Controllers\FilmController@index');
     Route::post('/film/create','App\Http\Controllers\FilmController@create');
