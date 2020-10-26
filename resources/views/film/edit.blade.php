@@ -20,10 +20,10 @@
                                     <label for="exampleInputEmail1">Release Date</label>
                                     <input name="release_date" type="date" value="{{$film->release_date}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="exampleInputEmail1">Genre</label>
                                     <input name="genre" type="text" class="form-control" value="{{$film->genre}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Genre">
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Duration</label>
                                     <input name="duration" type="number" class="form-control" value="{{$film->duration}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Input Duration">

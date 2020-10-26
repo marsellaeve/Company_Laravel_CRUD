@@ -17,7 +17,6 @@ class CreateFilmTable extends Migration
             $table->id();
             $table->string('title_film');
             $table->date('release_date');
-            $table->string('genre');
             $table->integer('duration');
             $table->string('rated');
             $table->float('rating');

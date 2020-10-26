@@ -8,9 +8,9 @@ use Kyslik\ColumnSortable\Sortable;
 class Film extends Model
 {
     protected $table = 'film';
-    protected $fillable = ['title','release_date','genre','duration','rated','rating','poster'];
+    protected $fillable = ['title','release_date','duration','rated','rating','poster'];
     use Sortable;
-    public $sortable = ['title','release_date','genre','duration','rated','rating'];
+    public $sortable = ['title','release_date','duration','rated','rating'];
 
     public function getPoster()
     {
@@ -18,5 +18,9 @@ class Film extends Model
             return asset('images/default.jpg');
         }
         return asset('images/'.$this->poster);
+    }
+    public function genre()
+    {
+        return $this->belongsToMany(Genre::class)->withTimeStamps();
     }
 }

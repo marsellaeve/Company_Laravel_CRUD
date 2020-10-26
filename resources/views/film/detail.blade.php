@@ -33,7 +33,9 @@
                                     <li>Release Date <span>{{$film->release_date}}</span></li>
                                     <li>Duration <span>{{$film->duration}}</span></li>
                                     <li>Rating <span>{{$film->rating}}</span></li>
-                                    <li>Genre <span>{{$film->genre}}</span></li>
+                                    
+                                    <li>Genre <span>@foreach ($film->genre as $gf){{$gf->name}} @endforeach</span></li>
+                                    
                                     <li>Rated <span>{{$film->rated}}</span></li>
                                 </ul>
                                 <div class="text-center"><a href="/film/{{$film->id}}/edit" class="btn btn-warning">Edit Profile</a></div>

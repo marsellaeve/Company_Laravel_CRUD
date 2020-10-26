@@ -9,24 +9,22 @@ class FilmController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data_film = \App\Models\Film::where('title','LIKE','%'.$request->search.'%')->get();
+            $data_film = \App\Models\Film::where('title','LIKE','%'.$request->search.'%')->sortable();
         }
         else if($request->has('filterdate')){
-            $data_film = \App\Models\Film::where('release_date','<',$request->filterdate)->get();
-        }
-        else if($request->has('filtergenre')){
-            $data_film = \App\Models\Film::where('genre','LIKE','%'.$request->filtergenre.'%')->get();
+            $data_film = \App\Models\Film::where('release_date','<',$request->filterdate)->sortable();
         }
         else if($request->has('filterrated')){
-            $data_film = \App\Models\Film::where('rated','=',$request->filterrated)->get();
+            $data_film = \App\Models\Film::where('rated','=',$request->filterrated)->sortable();
         }
         else if($request->has('filterrating')){
-            $data_film = \App\Models\Film::where('rating','>',$request->filterrating)->get();
+            $data_film = \App\Models\Film::where('rating','>',$request->filterrating)->sortable();
         }
         else{
             $data_film = \App\Models\Film::sortable();
         }
-        return view('film.index',['data_film'=>$data_film->paginate(10)]);
+        $genre_film=\App\Models\Genre::all();
+        return view('film.index',['data_film'=>$data_film->paginate(10),'genre_film'=>$genre_film]);
     }
     public function create(Request $request)
     {
@@ -36,6 +34,8 @@ class FilmController extends Controller
             $film->poster=$request->file('poster')->getClientOriginalName();
             $film->save();
         }
+        
+        $film->genre()->attach($request->genre);
         return redirect('/film')->with('success','Film Input Success');
     }
     public function edit($id)
