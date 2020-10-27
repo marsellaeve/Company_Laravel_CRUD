@@ -47,6 +47,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                {{ $data_film->links() }}
                                     <table>
                                         <tr>
                                             {{-- <td>
